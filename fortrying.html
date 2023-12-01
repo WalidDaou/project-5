@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <title>Document</title>
+</head>
+
+<body class="flex justify-center w-screen">
+    <div class="flex flex-col items-center bg-green-200 w-48 mt-6">
+        <label for="first-name">first name:</label>
+        <input name="first-name" id="first-name" class="border-2 p-2 mb-2" />
+        <p id="first-name-error" class="hidden text-red-500"></p>
+
+        <label for="last-name">last name:</label>
+        <input name="last-name" type="text" id="last-name" class="border-2 p-2 mb-2" />
+        <p id="last-name-error" class="hidden text-red-500"></p>
+
+        <label for="email">Email:</label>
+        <input name="email" id="email" class="border-2 p-2 mb-2" />
+        <p id="email-error" class="hidden text-red-500"></p>
+
+        <label for="mobile">mobile:</label>
+        <input type="number" name="mobile" id="mobile" class="border-2 p-2 mb-2" />
+        <p id="mobile-error" class="hidden text-red-500"></p>
+
+        <label for="address">address:</label>
+        <input name="address" id="address" class="border-2 p-2 mb-2" />
+        <p id="address-error" class="hidden text-red-500"></p>
+
+        <button id="submit-button" class="box-border h-22 w-32 p-4 border-4 mt-2 mb-2 bg-blue-200"
+            type="button">Submit</button>
+    </div>
+
+    <script>
+        const firstNameInput = document.getElementById('first-name');
+        const lastNameInput = document.getElementById('last-name');
+        const emailInput = document.getElementById('email');
+        const mobileInput = document.getElementById('mobile');
+        const addressInput = document.getElementById('address');
+
+        const firstNameError = document.getElementById('first-name-error');
+        const lastNameError = document.getElementById('last-name-error');
+        const emailError = document.getElementById('email-error');
+        const mobileError = document.getElementById('mobile-error');
+        const mobileErrortwo= document.getElementById('mobile-error');
+        const addressError = document.getElementById('address-error');
+
+        const submitButton = document.getElementById('submit-button');
+
+        submitButton.addEventListener('click', () => {
+            let isValid = true;
+
+            // Check name
+            const firstName = firstNameInput.value.trim();
+
+            if (!firstName) {
+                firstNameError.textContent = 'First name is required';
+                firstNameError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                firstNameError.classList.add('hidden');
+                console.log('Success first');
+            }
+
+            const lastName = lastNameInput.value.trim();
+            if (!lastName) {
+                lastNameError.textContent = 'last name is required';
+                lastNameError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                lastNameError.classList.add('hidden');
+                console.log('Success last');
+            }
+
+
+            // Check email
+            const email = emailInput.value.trim();
+            if (!email) {
+                emailError.textContent = 'Email is required';
+                emailError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    emailError.textContent = 'Invalid email address';
+                    emailError.classList.remove('hidden');
+                    isValid = false;
+                } else {
+                    emailError.classList.add('hidden');
+                }
+            }
+
+            // Check mobile
+            const mobile = mobileInput.value.trim();
+            if (!mobile) {
+                mobileError.textContent = 'Mobile number is required';
+                mobileError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                const numberRegex = /^\d{8}$/;
+                if (!numberRegex.test(mobile)) {
+                    mobileError.textContent = '8 characters';
+                    mobileError.classList.remove('hidden');
+                    isValid = false;
+                }
+                else {
+                    mobileError.classList.add('hidden');
+                }
+            }
+
+            // Check address
+            const address = addressInput.value.trim();
+            if (!address) {
+                addressError.textContent = 'Address is required';
+                addressError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                addressError.classList.add('hidden');
+            }
+
+            if (isValid) {
+                alert('Form submitted successfully');
+            }
+        });
+    </script>
+</body>
+
+</html>

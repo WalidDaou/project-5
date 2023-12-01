@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <title>Validate Before Submit</title>
+    <style>
+        input {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+
+        <body class="flex justify-center w-screen">
+            <div class="flex flex-col items-center bg-green-200 w-48 mt-6">
+                <label for="first-name">first name:</label>
+                <input name="first-name" id="first-name" class="border-2 p-2 mb-2" />
+                <p id="first-name-error" class="hidden text-red-500"></p>
+
+                <label for="last-name">last name:</label>
+                <input name="last-name" type="text" id="last-name" class="border-2 p-2 mb-2" />
+                <p id="last-name-error" class="hidden text-red-500"></p>
+
+                <label for="email">Email:</label>
+                <input name="email" id="email" class="border-2 p-2 mb-2" />
+                <p id="email-error" class="hidden text-red-500"></p>
+
+                <label for="mobile">mobile:</label>
+                <input type="number" name="mobile" id="mobile" class="border-2 p-2 mb-2" />
+                <p id="mobile-error" class="hidden text-red-500"></p>
+
+                <label for="address">address:</label>
+                <input name="address" id="address" class="border-2 p-2 mb-2" />
+                <p id="address-error" class="hidden text-red-500"></p>
+                <button onclick="handleSubmit()" type="button" id="submit-button">Submit Form</button>
+
+            </div>
+
+    </form>
+
+    <script>
+
+
+        
+
+
+
+
+            function handleSubmit() {
+                let allInputsValid = true;
+                // step 1: validate all inputs
+                if (!validateFirstName()) {
+                    allInputsValid = false;
+                }
+
+                // if(!validateLastName()){
+                //     allInputsValid=false
+                // }
+                // step 2: if all inputs are valid, submit
+                if (allInputsValid) {
+                    submitToBackend();
+                }
+            }
+
+            function validateFirstName() {
+                let firstNameInputElement = document.querySelector('#first-name');
+                // if empty string, or false, or null...
+                if (!firstNameInputElement.value) {
+                    document.querySelector('#first-name-error').classList.remove('hidden');
+                    return false;
+                }
+
+                if (firstNameInputElement.value.length < 3) {
+                    document.querySelector('#first-name-error').classList.remove('hidden');
+                    return false;
+                }
+
+                document.querySelector('#first-name-error').classList.add('hidden');
+                return true;
+            }
+
+            function validateLastirstName() {
+                let lastNameInputElement = document.querySelector('#last-name');
+                // if empty string, or false, or null...
+                if (!lastNameInputElement.value) {
+                    document.querySelector('#last-name-error').classList.remove('hidden');
+                    return false;
+                }
+
+                if (lastNameInputElement.value.length < 3) {
+                    document.querySelector('#last-name-error').classList.remove('hidden');
+                    return false;
+                }
+
+                document.querySelector('#last-name-error').classList.add('hidden');
+                return true;
+            }
+            function validateEmailInput() {
+                let emailInputElement = document.querySelector("#email")
+                let emailStings = emailInputElement
+            }
+
+
+            function submitToBackend() {
+                // does nothing for now
+                console.log('Success');
+            }
+
+    </script>
+</body>
+
+</html>
